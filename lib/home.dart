@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:practice/Landing.dart';
 
 class Homepage extends StatelessWidget {
@@ -47,27 +48,32 @@ class Homepage extends StatelessWidget {
                 isPassword: true,
               ),
               const SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () {
-                  if (nameController.text.isEmpty ||
-                      emailController.text.isEmpty||
-                      passwordController.text.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Invalid credentials'),
-                      ),
-                    );
-                  } else {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Landing()),
-                    );
-                    print('Name: ${nameController.text}');
-                    print('Email: ${emailController.text}');
-                    print('Password: ${passwordController.text}');
-                  }
-                },
-                child: const Text('Login'),
+              Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      if (nameController.text.isEmpty ||
+                          emailController.text.isEmpty||
+                          passwordController.text.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Invalid credentials'),
+                          ),
+                        );
+                      } else {
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(builder: (context) => const Landing()),
+                        // );
+                        Get.to(const Landing());
+                        print('Name: ${nameController.text}');
+                        print('Email: ${emailController.text}');
+                        print('Password: ${passwordController.text}');
+                      }
+                    },
+                    child: const Text('Login'),
+                  ),
+                ],
               ),
             ],
           ),
